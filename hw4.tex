@@ -1,0 +1,99 @@
+\documentclass[addpoints]{exam}
+
+\usepackage{amsmath,amssymb, amsthm}
+\usepackage[a4paper]{geometry}
+\usepackage{hyperref}
+\usepackage{forest}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{wasysym}
+\usepackage{mdframed}
+\usepackage{arabtex}
+\usepackage{utf8}
+\setcode{utf8}
+
+
+% Header and footer.
+\pagestyle{headandfoot}
+\runningheadrule
+\runningfootrule
+\runningheader{CS 212, Fall 2026}{HW 04: Reductions and Time Complexity}{Fall 2026}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+\firstpageheader{}{}{}
+
+\newcommand{\classX}[1]{\ensuremath{\text{\textsf{\textbf{#1}}}}} 
+\newcommand{\Prob}[1]{\ensuremath{\text{\textsc{#1}}}}
+
+\newcommand{\classP}{\classX{P}}
+\newcommand{\classNP}{\classX{NP}}
+\newcommand{\EXP}{\classX{EXP}}
+\newcommand{\shuffle}{\textsc{shuffle}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+
+\boxedpoints
+% \printanswers %uncomment  this
+
+\title{Homework 04: Reductions and Time Complexity\\ \vspace{0.5cm} \Large CS 212 Nature of Computation\\Habib University}
+% \author{} %Enter your team name here
+\date{Fall 2026}
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+    \question[10] Two competing research laboratories have independently developed Turing machines to solve the same computational problem. Although their implementations differ, both laboratories claim that their machines accept exactly the same set of inputs.\\
+    You are an independent certification authority tasked with verifying these claims. To automate the certification process, you want to develop a program that takes descriptions of two Turing machines as input and determines whether they recognize exactly the same language. If they do, the machines are granted a Language Equivalence Certificate (LEC); otherwise, the certification is denied. \\
+    The language corresponding to this certification problem is:
+    \[
+    \text{LEC} = \{\langle M_1,M_2\rangle \mid L(M_1)=L(M_2)\}.
+    \]
+    Prove that LEC is undecidable.
+    \begin{solution}
+        %enter your solution here
+    \end{solution}
+    
+    \question We have seen in class that normally we assume that natural numbers are represented as string using the binary basis.That is, a natural number $n$ is represented by the sequence $x_0, x_1, \dots, x_{\log(n)}$ such that $n=\sum_{\log(n)}^{i=0}x_i 2^i$. However we could have used other encoding schemes. If $n\in \mathbb{N}$ then for any positive integer $b\geq 2$, the base $b$ representation of $n$, denoted by $\llcorner n \lrcorner_b$ is obtained as follows: First, represent $n$ as a sequence of digits in $\{0,\dots, b-1\}$, such that if the representation has $k$ digits then $n=\sum_{k}^{i=0}x_i b^i$ for each $x_i \in \{0,\dots, b-1\}$. Then replace each digit $d$ in the representation by its binary representation. And the unary representation of $n$, denoted by $\llcorner n \lrcorner_1$ unary is the string $1^n$. 
+    \begin{parts}
+        \part[10] Show that choosing a different base of representation will make no difference to the class $\classP$. That is, show that for every subset $S$ of the natural numbers, if for any $b \in \mathbb{Z}^+$ we define $L^b_S = \{\llcorner n \lrcorner_b | n \in S\}$ then $\forall x\in \mathbb{Z}^+ \setminus \{1\},\;L^x_S \in \classP \iff L^2_S \in \classP$.
+        \begin{solution}
+            %enter your solution here
+        \end{solution}
+
+        \part[10] Consider the language \textsc{factor} = $\{\langle \llcorner n \lrcorner_1, \llcorner k \lrcorner_1\rangle|$ $n$ have a factor smaller than $k$ besides 1$\}$.
+        
+        Show that choosing the unary representation may make a difference by showing that $\textsc{factor}$ is in $\classP$ but changing base to binary \href{https://en.wikipedia.org/wiki/NP-intermediate}{might} result in a language not being in $\classP$. 
+        \begin{solution}
+            %enter your solution here
+        \end{solution}
+
+
+    \end{parts} 
+
+    \newpage
+    \question[10] 
+    \begin{definition}[Shuffle Operator(returns)]
+        Let $L \subseteq \{0,1\}^*$ be a some language. The operator $\shuffle$ is defined as, $\shuffle(L) = \{w\in \{0,1\}^*\mid \exists x \in L \;s.t. \; w \text{ is obtained by shuffling}$ \\$\text{ the characters of } x\}$. More formally, $$\shuffle(L) = \{w = w_1w_2\dots w_n\in \{0,1\}^*\mid \exists x = x_1x_2 \dots x_n \in L, \;s.t.\; \forall w_i !\exists x_j : w_i = x_j\}$$ 
+    \end{definition}
+    
+    Prove or disprove the following claim: 
+    $\classNP$ is closed under $\shuffle$.
+    (You may assume the pumping lemma in this problem.)
+
+    \begin{solution}
+        % Enter your solution here.
+    \end{solution}
+
+
+    \end{questions}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
